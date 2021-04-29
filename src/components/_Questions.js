@@ -3,7 +3,7 @@ import Question from './_Question';
 
 
 function Questions(props) {
-    const [questions, setQuestions] = useState(props.questions);
+    const questions = props.questions;
     const [indexQuestions, setIndexQuestions] = useState(0);
     const [question, setQuestion] = useState(props.questions[0]);
 
