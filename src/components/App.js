@@ -13,20 +13,21 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const HeaderWrapper = styled.header`
-  
+const MainWrapper = styled.main`
+background-color: #282c34;
+height: 100vh;
+display: flex;
+flex-direction: column; 
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: ${({ theme }) => { return theme.colors.primary }};
+line-height: ${({ theme }) => theme.spacing[2]}rem;
 `;
 
 const Title = styled.h1`
 text-transform: uppercase;
-color: black;
 text-align: center;
-`;
-
-const MainWrapper = styled.main`
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
 `;
 
 function App() {
@@ -34,12 +35,10 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <HeaderWrapper>
+      <MainWrapper>
         <Title>
           Trividado
         </Title>
-      </HeaderWrapper>
-      <MainWrapper>
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route path="/trivial" component={Questions} />
