@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import { ThemeProvider } from 'styled-components';
+import { HashRouter } from 'react-router-dom';
 
 const theme = {
   colors: {
@@ -13,11 +14,11 @@ const theme = {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+  <HashRouter>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
+  </HashRouter>,
   document.getElementById('root')
 );
 
