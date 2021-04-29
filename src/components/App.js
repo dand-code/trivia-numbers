@@ -29,8 +29,6 @@ text-transform: uppercase;
 const SubTitle = styled.h3`
 `;
 
-
-
 const Button = styled.button`
 background-color: ${({ theme }) => { return theme.colors.secondary }};
 border: none;

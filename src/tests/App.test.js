@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { mount } from 'enzyme';
 
-import App from '../App';
+import App from '../components/App';
 
 const theme = {
   colors: {
