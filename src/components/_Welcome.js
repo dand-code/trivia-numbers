@@ -24,12 +24,7 @@ text-transform: uppercase;
 `;
 
 
-function Welcome(props) {
-
-    const newQuestion = () => {
-        console.log(props.question);
-    }
-
+function Welcome() {
     return (
         <WelcomeWrapper>
             <SubTitle>
@@ -39,7 +34,6 @@ function Welcome(props) {
                 <Button
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={newQuestion}
                 >
                     Start
               </Button>

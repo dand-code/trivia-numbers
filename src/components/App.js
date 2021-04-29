@@ -31,6 +31,7 @@ text-align: center;
 `;
 
 function App() {
+  const question = 'Minha primeira pergunta';
 
   return (
     <>
@@ -41,7 +42,7 @@ function App() {
         </Title>
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route path="/trivial" component={Questions} />
+          <Route path="/trivial" render={props => <Questions {...props} question={question} />} />
         </Switch>
       </MainWrapper>
     </>

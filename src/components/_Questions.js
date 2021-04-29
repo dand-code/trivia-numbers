@@ -3,10 +3,9 @@ import React from 'react';
 
 
 function Questions(props) {
-
     return (
         <div>
-            <p>Minha pergunta:{props.question}</p>
+            <p>{props.question}</p>
             <ul>
                 <li>Resposta 1</li>
                 <li>Resposta 2</li>
