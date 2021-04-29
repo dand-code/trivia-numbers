@@ -24,7 +24,8 @@ text-transform: uppercase;
 `;
 
 
-function Welcome() {
+function Welcome(props) {
+
     return (
         <WelcomeWrapper>
             <SubTitle>

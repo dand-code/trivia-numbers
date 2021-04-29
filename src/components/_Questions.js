@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import styled from 'styled-components';
 
 
 function Questions(props) {
+    useEffect(() => {
+        props.updateQuestion();
+    });
+
     return (
         <div>
             <p>{props.question}</p>
             <ul>
-                <li>Resposta 1</li>
-                <li>Resposta 2</li>
-                <li>Resposta 3</li>
-                <li>Resposta 4</li>
+                <li>Answer 1</li>
+                <li>Answer 2</li>
+                <li>Answer 3</li>
+                <li>Answer 4</li>
             </ul>
         </div>
     );

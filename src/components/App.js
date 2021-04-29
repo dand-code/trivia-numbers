@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
@@ -31,7 +31,11 @@ text-align: center;
 `;
 
 function App() {
-  const question = 'Minha primeira pergunta';
+  const [question, setQuestion] = useState('');
+
+  const updateQuestion = () => {
+    setQuestion('MY NEW QUESTION');
+  }
 
   return (
     <>
@@ -42,7 +46,7 @@ function App() {
         </Title>
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route path="/trivial" render={props => <Questions {...props} question={question} />} />
+          <Route path="/trivial" render={props => <Questions {...props} question={question} updateQuestion={updateQuestion} />} />
         </Switch>
       </MainWrapper>
     </>
