@@ -24,6 +24,7 @@ font-size: calc(10px + 1.5vmin);
 color: ${({ theme }) => { return theme.colors.primary }};
 line-height: ${({ theme }) => theme.spacing[2]}rem;
 text-align: center;
+margin: 0 auto;
 `;
 
 const Title = styled.h1`

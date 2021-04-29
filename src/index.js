@@ -7,7 +7,7 @@ import { HashRouter } from 'react-router-dom';
 const theme = {
   colors: {
     primary: '#ffffff',
-    secondary: '#4CAF50',
+    secondary: '#ccc',
     tertiary: '#70b25e',
   },
   spacing: [0, 4, 8, 12, 16, 20],
