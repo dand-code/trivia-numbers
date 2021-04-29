@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react';
-// import styled from 'styled-components';
+import React, { useState } from 'react';
+import Question from './_Question';
 
 
 function Questions(props) {
-    useEffect(() => {
-        props.updateQuestion();
-    });
+    const [questions, setQuestions] = useState(props.questions);
+    const [indexQuestions, setIndexQuestions] = useState(0);
+    const [question, setQuestion] = useState(props.questions[0]);
+
+    const confirmQuestion = () => {
+
+    }
+
+    const skipQuestion = () => {
+        if (indexQuestions < questions.length - 1) {
+            let nextIndexQuestion = indexQuestions + 1;
+            setIndexQuestions(nextIndexQuestion);
+            setQuestion(questions[nextIndexQuestion]);
+        }
+    }
 
     return (
-        <div>
-            <p>{props.question}</p>
-            <ul>
-                <li>Answer 1</li>
-                <li>Answer 2</li>
-                <li>Answer 3</li>
-                <li>Answer 4</li>
-            </ul>
-        </div>
+        <>
+            <div id="progressBar">Progress Bar</div>
+            <div id="Question">
+                <Question question={question} confirmQuestion={confirmQuestion} skipQuestion={skipQuestion} />
+            </div>
+            <div id="answered"></div>
+        </>
     );
 }
 

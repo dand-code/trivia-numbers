@@ -31,11 +31,12 @@ text-align: center;
 `;
 
 function App() {
-  const [question, setQuestion] = useState('');
-
-  const updateQuestion = () => {
-    setQuestion('MY NEW QUESTION');
-  }
+  const questions = [
+    { "question": "Is the number of dimensions of a line.", "answer": "1" },
+    { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2" },
+    { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "answer": "3" },
+    { "question": "Is the highest score possible in Olympics gymnastics competitions.", "answer": "10" }
+  ]
 
   return (
     <>
@@ -46,7 +47,7 @@ function App() {
         </Title>
         <Switch>
           <Route exact path="/" component={Welcome} />
-          <Route path="/trivial" render={props => <Questions {...props} question={question} updateQuestion={updateQuestion} />} />
+          <Route path="/trivial" render={props => <Questions {...props} questions={questions} />} />
         </Switch>
       </MainWrapper>
     </>
