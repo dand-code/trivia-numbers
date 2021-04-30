@@ -12,7 +12,7 @@ const fetchApi = () => {
 const generateRandomNumbers = (qty) => {
   let numbers = [];
   while (numbers.length < qty) {
-    let random = Math.floor(Math.random() * 1000);
+    let random = Math.floor(Math.random() * 100);
     if (!numbers.includes(random))
       numbers.push(random);
   }

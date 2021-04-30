@@ -36,7 +36,7 @@ const formatFact = (number, fact) => {
 const generateOptions = (solution) => {
     let numbers = [solution];
     while (numbers.length < 4) {
-        let random = Math.floor(Math.random() * 1000);
+        let random = Math.floor(Math.random() * 100);
         if (!numbers.includes(random))
             numbers.push(random);
     }
