@@ -1,4 +1,3 @@
-import { prototype } from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -60,10 +59,10 @@ function Question(props) {
         <>
             <QuestionText>{props.question["question"]}</QuestionText>
             <AnswersWrapper>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["answers"][0]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["answers"][1]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["answers"][2]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["answers"][3]}</AnswerItem>
+                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][0]}</AnswerItem>
+                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][1]}</AnswerItem>
+                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][2]}</AnswerItem>
+                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][3]}</AnswerItem>
             </AnswersWrapper>
             <div>
                 <Button>Confirm</Button>

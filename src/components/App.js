@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { fetchQuestions } from '../services/fetchQuestions';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
 
@@ -33,12 +34,12 @@ font-size: calc(10px + 6vmin);
 `;
 
 function App() {
-  const questions = [
-    { "question": "Is the number of dimensions of a line.", "answer": "1", "answers": ["3", "1", "0", "4"] },
-    { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2", "answers": ["2", "4", "0", "5"] },
-    { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "answer": "3", "answers": ["2", "4", "3", "5"] },
-    { "question": "Is the highest score possible in Olympics gymnastics competitions.", "answer": "10", "answers": ["9", "14", "20", "10"] }
-  ]
+  const [questions, setQuestions] = useState([]);
+
+  fetchQuestions()
+    .then(data => {
+      setQuestions(data);
+    });
 
   return (
     <>

@@ -5,7 +5,7 @@ import Question from './_Question';
 function Questions(props) {
     const questions = props.questions;
     const [indexQuestions, setIndexQuestions] = useState(0);
-    const [question, setQuestion] = useState(props.questions[0]);
+    const [question, setQuestion] = useState(questions[0]);
 
     const confirmQuestion = () => {
 
