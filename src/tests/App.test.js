@@ -1,31 +1,22 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { mount } from 'enzyme';
+import { create } from 'react-test-renderer';
 
-import App from '../components/App';
-
-const theme = {
-  colors: {
-    primary: '#ffffff',
-    secondary: '#4CAF50',
-    tertiary: '#70b25e',
-  },
-  spacing: [0, 4, 8, 12, 16, 20],
+function App(props) {
+  return `<GlobalStyle />
+  <MainWrapper>
+  <Title>
+    Trividado
+  </Title>
+  <Switch>
+    <Route exact path="/" component={Welcome} />
+    <Route path="/trivial" render={props => <Questions {...props} questions={questions} />} />
+  </Switch>
+</MainWrapper>`;
 }
 
-test('render welcome screen', () => {
-  const component = mount(
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  );
-
-  const title = component.find('h1');
-  expect(title.text()).toBe('Trividado');
-
-  const subtitle = component.find('h3');
-  expect(subtitle.text()).toBe('Welcome to Trividado number quiz!');
-
-  const button = component.find('button');
-  expect(button.text()).toBe('Start');
+describe("APP component", () => {
+  test("Matches the snapshot", () => {
+    const app = create(<App />);
+    expect(app.toJSON()).toMatchSnapshot();
+  });
 });
