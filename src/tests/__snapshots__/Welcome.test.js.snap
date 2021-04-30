@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Welcome component Matches the snapshot 1`] = `
+"<WelcomeWrapper>
+  <SubTitle>
+      Welcome to Trividado number quiz!
+  </SubTitle>
+  <Link to=\\"/trivial\\">
+      <Button
+          target=\\"_blank\\"
+          rel=\\"noopener noreferrer\\"
+      >
+          Start
+    </Button>
+  </Link>
+</WelcomeWrapper >"
+`;
