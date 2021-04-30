@@ -1,7 +1,23 @@
-const ENDPOINT = 'http://numbersapi.com/1..10';
+const ENDPOINT = 'http://numbersapi.com/';
+
+const qtyQuestions = 10;
 
 const fetchApi = () => {
-  return fetch(ENDPOINT).then(response => response.json()); // Devuelve la Promise que genera el fetch
+  const randomNumbers = generateRandomNumbers(qtyQuestions).join();
+
+  return fetch(ENDPOINT + randomNumbers)
+    .then(response => response.json());
 }
 
-export { fetchApi };
+const generateRandomNumbers = (qty) => {
+  let numbers = [];
+  while (numbers.length < qty) {
+    let random = Math.floor(Math.random() * 1000);
+    if (!numbers.includes(random))
+      numbers.push(random);
+  }
+
+  return numbers;
+}
+
+export { fetchApi, generateRandomNumbers };
