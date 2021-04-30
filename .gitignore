@@ -1,1 +1,4 @@
 node_modules/
+src/tests/__snapshots__/
+yarn.lock
+package-lock.json
