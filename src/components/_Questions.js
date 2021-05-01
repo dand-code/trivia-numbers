@@ -20,14 +20,19 @@ const Button = styled.button`
 }
 `;
 
-
+ 
 function Questions(props) {
     const questions = props.questions;
     const [indexQuestions, setIndexQuestions] = useState(0);
     const [question, setQuestion] = useState(questions[0]);
+    const [answer, setAnswer] = useState();
+    const [answersList, setAnswerList] = useState([]);
+   
 
     const confirmQuestion = () => {
-        console.log('Confirm clicked');
+        let listAnswer = answer;
+        setAnswerList(questions[0]);
+        return listAnswer.push(setAnswerList);
     }
 
     const skipQuestion = () => {
@@ -38,11 +43,16 @@ function Questions(props) {
         }
     }
 
+    const saveAnswer = (e) => { 
+        setAnswer(e.currentTarget.innerText);
+    }
+
+
     return (
         <>
             <div id="progressBar">Progress Bar</div>
             <div id="Question">
-                <Question question={question} confirmQuestion={confirmQuestion} skipQuestion={skipQuestion} />
+                <Question question={question} saveAnswer={saveAnswer} answer={answer} />
             </div>
             <div id="answered"></div>
             <div>

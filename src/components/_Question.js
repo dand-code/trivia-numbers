@@ -21,6 +21,8 @@ const AnswerItem = styled.li`
     flex-basis: 50%;
     align-items: center;
     line-height: 2;
+
+    
 `;
 
 const CircleSelect = styled.div`
@@ -31,19 +33,28 @@ const CircleSelect = styled.div`
     background-color: ${({ theme }) => { return theme.colors.tertiary }};
     margin: auto 12px 0;
     text-align: center;
+    &.selected{
+        background-color:hotpink;
 `;
 
 
 function Question(props) {
-
     return (
         <>
             <QuestionText>{props.question["question"]}</QuestionText>
             <AnswersWrapper>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][0]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][1]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][2]}</AnswerItem>
-                <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][3]}</AnswerItem>
+                <AnswerItem onClick={props.saveAnswer}>
+                    <CircleSelect className={props.answer == props.question["options"][0] ? 'selected' : ""}></CircleSelect>{props.question["options"][0]}
+                </AnswerItem>
+                <AnswerItem onClick={props.saveAnswer}>
+                    <CircleSelect className={props.answer == props.question["options"][1] ? 'selected' : ""}></CircleSelect>{props.question["options"][1]}
+                </AnswerItem>
+                <AnswerItem onClick={props.saveAnswer}>
+                    <CircleSelect className={props.answer == props.question["options"][2] ? 'selected' : ""}></CircleSelect>{props.question["options"][2]}
+                </AnswerItem>
+                <AnswerItem onClick={props.saveAnswer}>
+                    <CircleSelect className={props.answer == props.question["options"][3] ? 'selected' : ""}></CircleSelect>{props.question["options"][3]}
+                    </AnswerItem>
             </AnswersWrapper>
         </>
     );
