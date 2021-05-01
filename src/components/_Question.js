@@ -33,24 +33,6 @@ const CircleSelect = styled.div`
     text-align: center;
 `;
 
-const Button = styled.button`
-   background-color: ${props => props.tertiary ? ({ theme }) => { return theme.colors.tertiary } : ({ theme }) => { return theme.colors.secondary }};
-   width: 130px;
-   border: none;
-   color: black;
-   padding: 15px 25px;
-   text-decoration: none;
-   font-weight: 800;
-   display: inline-block;
-   font-size: 16px;
-   text-transform: uppercase;
-   margin-right: 20px;
-
-   &:last-of-type{
-      margin-right: 0;
-}
-`;
-
 
 function Question(props) {
 
@@ -63,10 +45,6 @@ function Question(props) {
                 <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][2]}</AnswerItem>
                 <AnswerItem><CircleSelect></CircleSelect>{props.question["options"][3]}</AnswerItem>
             </AnswersWrapper>
-            <div>
-                <Button>Confirm</Button>
-                <Button onClick={props.skipQuestion} tertiary>Skip</Button>
-            </div>
         </>
     );
 }
