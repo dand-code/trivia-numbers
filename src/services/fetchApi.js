@@ -18,7 +18,6 @@ const generateRandomNumbers = (qty) => {
   }
 
   return numbers;
-
 }
 
 export { fetchApi, generateRandomNumbers };

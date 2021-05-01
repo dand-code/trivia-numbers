@@ -12,25 +12,29 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: sans-serif;
   }
+  body{
+    background-color: ${ ({ theme }) => { return theme.colors.background } };;
+  }
 `;
 
 const MainWrapper = styled.main`
-background-color: #282c34;
-min-height: 100vh;
-display: flex;
-flex-direction: column; 
-align-items: center;
-justify-content: center;
-font-size: calc(10px + 1.5vmin);
-color: ${({ theme }) => { return theme.colors.primary }};
-line-height: ${({ theme }) => theme.spacing[2]}rem;
-text-align: center;
-margin: 0 auto;
+  background-color: ${ ({ theme }) => { return theme.colors.background } };;
+  min-height: 100vh;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1.5vmin);
+  color: ${ ({ theme }) => { return theme.colors.primary } };
+  line-height: ${ ({ theme }) => theme.spacing[2] }rem;
+  text-align: center;
+  margin: 0 auto;
 `;
 
 const Title = styled.h1`
-text-transform: uppercase;
-font-size: calc(10px + 6vmin);
+  text-transform: uppercase;
+  font-size: calc(10px + 6vmin);
 `;
 
 function App() {

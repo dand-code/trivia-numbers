@@ -34,21 +34,20 @@ const CircleSelect = styled.div`
 `;
 
 const Button = styled.button`
-background-color: ${props => props.primary ? ({ theme }) => { return theme.colors.tertiary } : ({ theme }) => { return theme.colors.secondary }};
-width: 130px;
-border: none;
-color: black;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-font-weight: 800;
-display: inline-block;
-font-size: 16px;
-text-transform: uppercase;
-margin-right: 20px;
+   background-color: ${props => props.tertiary ? ({ theme }) => { return theme.colors.tertiary } : ({ theme }) => { return theme.colors.secondary }};
+   width: 130px;
+   border: none;
+   color: black;
+   padding: 15px 25px;
+   text-decoration: none;
+   font-weight: 800;
+   display: inline-block;
+   font-size: 16px;
+   text-transform: uppercase;
+   margin-right: 20px;
 
-&:last-of-type{
-     margin-right: 0;
+   &:last-of-type{
+      margin-right: 0;
 }
 `;
 
@@ -66,7 +65,7 @@ function Question(props) {
             </AnswersWrapper>
             <div>
                 <Button>Confirm</Button>
-                <Button onClick={props.skipQuestion} primary>Skip</Button>
+                <Button onClick={props.skipQuestion} tertiary>Skip</Button>
             </div>
         </>
     );
