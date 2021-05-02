@@ -34,13 +34,11 @@ function Questions(props) {
         setUserAnswer(selectedItem.innerText);
     }
 
-    // 1. receber a resposta do usuario e comparar com a question["solution"]. Se for igual -> enviar para answerList como correta. / Se for diferente -> enviar para answerList como incorreta.
-
     const confirmQuestion = () => {
-        let status = 'ok';
+        let status = 'Ok';
         if (userAnswer !== question["solution"])
         {
-             status = 'error';
+             status = 'Error';
         } 
 
         const newAnswersList = answersList.concat([
@@ -58,7 +56,7 @@ function Questions(props) {
         const newAnswersList = answersList.concat([
             {
                 "question": question["question"],
-                "status": "skipped",
+                "status": "Skipped",
                 "solution": question["solution"]
             }
         ])

@@ -21,8 +21,7 @@ const AnswerItem = styled.li`
     flex-basis: 50%;
     align-items: center;
     line-height: 2;
-
-    
+ 
 `;
 
 const CircleSelect = styled.div`
@@ -34,7 +33,7 @@ const CircleSelect = styled.div`
     margin: auto 12px 0;
     text-align: center;
     &.selected{
-        background-color:${({ theme }) => { return theme.colors.secondary }};;
+        background-color:${({ theme }) => { return theme.colors.secondary }};
 `;
 
 
