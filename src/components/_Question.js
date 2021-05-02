@@ -34,7 +34,7 @@ const CircleSelect = styled.div`
     margin: auto 12px 0;
     text-align: center;
     &.selected{
-        background-color:hotpink;
+        background-color:${({ theme }) => { return theme.colors.secondary }};;
 `;
 
 
@@ -43,17 +43,17 @@ function Question(props) {
         <>
             <QuestionText>{props.question["question"]}</QuestionText>
             <AnswersWrapper>
-                <AnswerItem onClick={props.saveAnswer}>
-                    <CircleSelect className={props.answer == props.question["options"][0] ? 'selected' : ""}></CircleSelect>{props.question["options"][0]}
+                <AnswerItem onClick={props.saveUserAnswer}>
+                    <CircleSelect className={props.userAnswer == props.question["options"][0] ? 'selected' : ""}></CircleSelect>{props.question["options"][0]}
                 </AnswerItem>
-                <AnswerItem onClick={props.saveAnswer}>
-                    <CircleSelect className={props.answer == props.question["options"][1] ? 'selected' : ""}></CircleSelect>{props.question["options"][1]}
+                <AnswerItem onClick={props.saveUserAnswer}>
+                    <CircleSelect className={props.userAnswer == props.question["options"][1] ? 'selected' : ""}></CircleSelect>{props.question["options"][1]}
                 </AnswerItem>
-                <AnswerItem onClick={props.saveAnswer}>
-                    <CircleSelect className={props.answer == props.question["options"][2] ? 'selected' : ""}></CircleSelect>{props.question["options"][2]}
+                <AnswerItem onClick={props.saveUserAnswer}>
+                    <CircleSelect className={props.userAnswer == props.question["options"][2] ? 'selected' : ""}></CircleSelect>{props.question["options"][2]}
                 </AnswerItem>
-                <AnswerItem onClick={props.saveAnswer}>
-                    <CircleSelect className={props.answer == props.question["options"][3] ? 'selected' : ""}></CircleSelect>{props.question["options"][3]}
+                <AnswerItem onClick={props.saveUserAnswer}>
+                    <CircleSelect className={props.userAnswer == props.question["options"][3] ? 'selected' : ""}></CircleSelect>{props.question["options"][3]}
                     </AnswerItem>
             </AnswersWrapper>
         </>
