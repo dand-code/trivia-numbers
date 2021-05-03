@@ -28,6 +28,7 @@ function Questions(props) {
     const [question, setQuestion] = useState(questions[0]);
     const [userAnswer, setUserAnswer] = useState();
     const [answersList, setAnswerList] = useState([]);
+    const [disabled, setDisabled] = useState(false);
    
     const saveUserAnswer = (e) => { 
         const selectedItem = e.currentTarget;
@@ -50,6 +51,7 @@ function Questions(props) {
         ])
         setAnswerList(newAnswersList);
         nextQuestion();
+        buttonDisabled();
     }
 
     const skipQuestion = () => {
@@ -63,6 +65,7 @@ function Questions(props) {
 
         setAnswerList(newAnswersList);
         nextQuestion();
+        buttonDisabled();
     }
 
     const nextQuestion = () => { 
@@ -74,6 +77,14 @@ function Questions(props) {
         
     }
 
+    const buttonDisabled = () => {
+        if (indexQuestions === questions.length - 1)
+        setDisabled(true);
+    
+        console.log(indexQuestions);
+        console.log(questions.length);
+    }
+
   
     return (
         <>
@@ -82,8 +93,8 @@ function Questions(props) {
                 <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />
             </div>
             <div>
-                <Button onClick={confirmQuestion}>Confirm</Button>
-                <Button onClick={skipQuestion} tertiary>Skip</Button>
+                <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>
+                <Button onClick={skipQuestion} disabled={disabled} tertiary>Skip</Button>
             </div>
 
             <AnswerRecords answersList={answersList} />
