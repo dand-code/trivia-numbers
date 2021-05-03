@@ -80,9 +80,6 @@ function Questions(props) {
     const buttonDisabled = () => {
         if (indexQuestions === questions.length - 1)
         setDisabled(true);
-    
-        console.log(indexQuestions);
-        console.log(questions.length);
     }
 
   
