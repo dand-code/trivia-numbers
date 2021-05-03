@@ -35,7 +35,7 @@ function Questions(props) {
     }
 
     const confirmQuestion = () => {
-        let status = 'Ok';
+        let status = 'Correct';
         if (userAnswer !== question["solution"])
         {
              status = 'Error';
@@ -60,6 +60,7 @@ function Questions(props) {
                 "solution": question["solution"]
             }
         ])
+
         setAnswerList(newAnswersList);
         nextQuestion();
     }
@@ -70,6 +71,7 @@ function Questions(props) {
             setIndexQuestions(nextIndexQuestion);
             setQuestion(questions[nextIndexQuestion]);
         }
+        
     }
 
   

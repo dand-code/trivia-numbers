@@ -5,8 +5,7 @@ import styled from 'styled-components';
 const UserAnswerListItem = styled.li`
     list-style: none;
     line-height: 1.5;
-    display: flex;
-    flex-direction: column;
+    display: block;
     padding: 10px;
 
     & p.error{
@@ -29,7 +28,7 @@ const Line = styled.div`
 `;
 
 function AnswerRecords(props) {
-
+   
     const answersList = props.answersList;
 
     return (
@@ -39,7 +38,10 @@ function AnswerRecords(props) {
                     <UserAnswerListItem key={`number ${ answer.solution }`}>
                         <Line></Line>
                         <p>{answer.question}</p>
-                        <p className={answer.status === 'Ok' ? 'ok' : "error"}>{answer.status} <span>{answer.status === 'Ok' ? `${answer.solution}`: `Rigth answer was ${answer.solution}`}</span></p>
+                        <p className={answer.status === 'Correct' ? 'ok' : "error"}> 
+                            {answer.status}
+                            <span>{answer.status === 'Correct' ? ` ${ answer.solution } ` : ` Rigth answer was ${ answer.solution }`}</span>
+                        </p>
                     </UserAnswerListItem>
                 )}
            </ul>
