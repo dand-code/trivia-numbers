@@ -17,7 +17,7 @@ const UserAnswerListItem = styled.li`
         }
     }
     & p.ok{
-        color: ${({ theme }) => { return theme.colors.tertiary }};
+        color: ${({ theme }) => { return theme.colors.primary}};
     }
 
 `;
@@ -46,7 +46,6 @@ function AnswerRecords(props) {
                 )}
            </ul>
         </div>
-     
     );
 }     
 

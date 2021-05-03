@@ -7,11 +7,8 @@ const WelcomeWrapper = styled.div`
    text-align: center;
 `;
 
-const SubTitle = styled.h3`
-`;
-
 const Button = styled.button`
-   background-color: ${({ theme }) => { return theme.colors.tertiary }};
+   background-color: ${({ theme }) => { return theme.colors.primary }};
    border: none;
    color: black;
    padding: 15px 32px;
@@ -25,12 +22,11 @@ const Button = styled.button`
 
 
 function Welcome() {
-
     return (
         <WelcomeWrapper>
-            <SubTitle>
+            <h3>
                 Welcome to Trividado number quiz!
-            </SubTitle>
+            </h3>
             <Link to="/trivial">
                 <Button
                     target="_blank"
@@ -39,7 +35,6 @@ function Welcome() {
                     Start
               </Button>
             </Link>
-
         </WelcomeWrapper >
     );
 }

@@ -6,10 +6,11 @@ import { HashRouter } from 'react-router-dom';
 
 const theme = {
   colors: {
-    primary: '#ffffff', //white
+    primary: '#70b25e', //green
     secondary: '#ccc', // grey
-    tertiary: '#70b25e', // green
-    background: '#282c34' // dark
+    dark: '#282c34', // page background
+    white: '#ffffff',
+    black: '#333333'
   },
   spacing: [0, 4, 8, 12, 16, 20],
 }
