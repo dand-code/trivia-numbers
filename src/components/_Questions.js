@@ -90,10 +90,9 @@ function Questions(props) {
   
     return (
         <>    
-            <div id="progressBar">
-                <h2>Question {indexQuestions +1} of {questions.length}</h2>
-            </div>
-            <div id="Question">
+            <h2>Question {indexQuestions + 1} of {questions.length}</h2> 
+            
+            <div>
                 {!props.gameOver && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
             </div>
             <div>
