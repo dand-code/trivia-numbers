@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { fetchQuestions } from '../services/fetchQuestions';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
+import AnswerRecords from './_AnswerRecords';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -39,6 +40,9 @@ const Title = styled.h1`
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [answersList, setAnswerList] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+
 
   fetchQuestions()
     .then(data => {
@@ -52,11 +56,16 @@ function App() {
         <Title>
           Trividado
         </Title>
-        <Switch>
+        {gameOver ?
+          (<Switch>
           <Route exact path="/" component={Welcome} />
-          <Route path="/trivial" render={props => <Questions {...props} questions={questions} />} />
-        </Switch>
+            <Route path="/trivial" render={props => <Questions {...props} questions={questions} answerList={answersList} setAnswerList={setAnswerList} />} />
+          </Switch>)
+          :
+          (<><p>Result Page</p><button>PLAY AGAIN</button></>)
+        }
       </MainWrapper>
+    
     </>
   );
 }
