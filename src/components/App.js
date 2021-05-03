@@ -42,12 +42,17 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [answersList, setAnswerList] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-
-
+  
+ 
   fetchQuestions()
     .then(data => {
       setQuestions(data);
     });
+  
+  const resetGame = () => { 
+    setGameOver(false);
+    window.location = "/"; 
+  }
 
   return (
     <>
@@ -56,14 +61,11 @@ function App() {
         <Title>
           Trividado
         </Title>
-        {gameOver ?
-          (<Switch>
+        <Switch>
           <Route exact path="/" component={Welcome} />
-            <Route path="/trivial" render={props => <Questions {...props} questions={questions} answerList={answersList} setAnswerList={setAnswerList} />} />
-          </Switch>)
-          :
-          (<><p>Result Page</p><button>PLAY AGAIN</button></>)
-        }
+          <Route path="/trivial" render={props => <Questions {...props} questions={questions} answersList={answersList} setAnswerList={setAnswerList} resetGame={resetGame}
+            setGameOver={setGameOver} gameOver={gameOver}/>} />
+          </Switch>
       </MainWrapper>
     
     </>

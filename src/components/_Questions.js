@@ -29,7 +29,8 @@ function Questions(props) {
     const [userAnswer, setUserAnswer] = useState();
     const [answersList, setAnswerList] = useState([]);
     const [disabled, setDisabled] = useState(false);
-   
+
+
     const saveUserAnswer = (e) => { 
         const selectedItem = e.currentTarget;
         setUserAnswer(selectedItem.innerText);
@@ -69,10 +70,14 @@ function Questions(props) {
     }
 
     const nextQuestion = () => { 
-        if (indexQuestions < questions.length - 1) {
+        if (indexQuestions < questions.length - 1)
+        {
             let nextIndexQuestion = indexQuestions + 1;
             setIndexQuestions(nextIndexQuestion);
             setQuestion(questions[nextIndexQuestion]);
+        } else
+        { 
+            props.setGameOver(true);
         }
         
     }
@@ -84,17 +89,19 @@ function Questions(props) {
 
   
     return (
-        <>
+        <>    
             <div id="progressBar">Progress Bar</div>
             <div id="Question">
-                <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />
+                {!props.gameOver && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
             </div>
             <div>
-                <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>
-                <Button onClick={skipQuestion} disabled={disabled} tertiary>Skip</Button>
+                {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>}
+                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled} tertiary>Skip</Button>}
             </div>
-
+               
             <AnswerRecords answersList={answersList} />
+            { props.gameOver && <button onClick={props.resetGame}> PLAY AGAIN </button> }
+            
         </>
     );
 }
