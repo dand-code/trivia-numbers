@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { fetchQuestions } from '../services/fetchQuestions';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
-import AnswerRecords from './_AnswerRecords';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -14,12 +13,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: sans-serif;
   }
   body{
-    background-color: ${ ({ theme }) => { return theme.colors.background } };;
+    background-color: ${ ({ theme }) => { return theme.colors.dark } };;
   }
 `;
 
 const MainWrapper = styled.main`
-  background-color: ${ ({ theme }) => { return theme.colors.background } };;
   min-height: 100vh;
   max-width: 1200px;
   display: flex;
@@ -27,7 +25,7 @@ const MainWrapper = styled.main`
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 1.5vmin);
-  color: ${ ({ theme }) => { return theme.colors.primary } };
+  color: ${ ({ theme }) => { return theme.colors.white } };
   line-height: ${ ({ theme }) => theme.spacing[2] }rem;
   text-align: center;
   margin: 0 auto;

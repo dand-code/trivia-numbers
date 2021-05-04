@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProgressBar from './_ProgressBar'
 import Question from './_Question';
 import AnswerRecords from './_AnswerRecords';
 
 const Button = styled.button`
-   background-color: ${props => props.tertiary ? ({ theme }) => { return theme.colors.tertiary } : ({ theme }) => { return theme.colors.secondary }};
-   width: 130px;
+   background-color: ${props => props.primary ? ({ theme }) => { return theme.colors.primary } : ({ theme }) => { return theme.colors.secondary }};
+   width: 140px;
    border: none;
-   color: black;
-   padding: 15px 25px;
+   color: ${({ theme }) => { return theme.colors.black }};
+   padding: 15px 19px;
    text-decoration: none;
    font-weight: 800;
    display: inline-block;
    font-size: 16px;
    text-transform: uppercase;
+   margin-top: 40px;
+   margin-bottom: 40px;
    margin-right: 20px;
 
    &:last-of-type{
       margin-right: 0;
 }
 `;
-
  
 function Questions(props) {
     const questions = props.questions;
@@ -30,7 +31,7 @@ function Questions(props) {
     const [userAnswer, setUserAnswer] = useState();
     const [answersList, setAnswerList] = useState([]);
     const [disabled, setDisabled] = useState(false);
-    // const [value, setValue] = useState(0);
+
 
 
     const saveUserAnswer = (e) => { 
@@ -42,7 +43,7 @@ function Questions(props) {
         let status = 'Correct';
         if (userAnswer !== question["solution"])
         {
-             status = 'Error';
+            status = 'Error';
         } 
 
         const newAnswersList = answersList.concat([
@@ -65,7 +66,6 @@ function Questions(props) {
                 "solution": question["solution"]
             }
         ])
-
         setAnswerList(newAnswersList);
         nextQuestion();
         buttonDisabled();
@@ -89,7 +89,6 @@ function Questions(props) {
         setDisabled(true);
     }
 
-  
     return (
         <>    
             <div id="progressBar">
@@ -101,11 +100,11 @@ function Questions(props) {
             </div>
             <div>
                 {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>}
-                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled} tertiary>Skip</Button>}
+                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled} primary>Skip</Button>}
             </div>
                
             <AnswerRecords answersList={answersList} />
-            { props.gameOver && <button onClick={props.resetGame}> PLAY AGAIN </button> }
+            { props.gameOver && <Button onClick={props.resetGame} primary>Play Again</Button> }
             
         </>
     );
