@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import ProgressBar from './_ProgressBar'
 import Question from './_Question';
 import AnswerRecords from './_AnswerRecords';
 
@@ -29,6 +30,7 @@ function Questions(props) {
     const [userAnswer, setUserAnswer] = useState();
     const [answersList, setAnswerList] = useState([]);
     const [disabled, setDisabled] = useState(false);
+    // const [value, setValue] = useState(0);
 
 
     const saveUserAnswer = (e) => { 
@@ -91,7 +93,8 @@ function Questions(props) {
     return (
         <>    
             <div id="progressBar">
-                <h2>Question {indexQuestions +1} of {questions.length}</h2>
+                <h2>Question {indexQuestions + 1} of {questions.length}</h2>
+                <ProgressBar color={"#ff7979"} width={"150px"} value={indexQuestions + 1} max={questions.length} />
             </div>
             <div id="Question">
                 {!props.gameOver && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
