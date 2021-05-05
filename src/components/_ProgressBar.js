@@ -23,15 +23,16 @@ const Container = styled.div`
   progress[value]::-webkit-progress-value {
     height: 10px;
     border-radius: 20px;
-    background-color: ${props => props.color};
+    background-color:{${props => props.value} >== 15 ? green : red} ;
   }
 `;
 
-const ProgressBar = ({ value, max, color, width }) => {
+const ProgressBar = ({ timer, max, color, width }) => {
   return (
     <Container color={color} width={width}>
-      <progress value={value} max={max} />
-    </Container>
+      <progress value={timer} max={max} />
+    </Container>  
+
   );
 };
 

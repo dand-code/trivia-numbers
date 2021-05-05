@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProgressBar from './_ProgressBar'
 import Question from './_Question';
@@ -25,12 +25,14 @@ const Button = styled.button`
 `;
  
 function Questions(props) {
+    const maxTimer = 5;
     const questions = props.questions;
     const [indexQuestions, setIndexQuestions] = useState(0);
     const [question, setQuestion] = useState(questions[0]);
     const [userAnswer, setUserAnswer] = useState();
     const [answersList, setAnswerList] = useState([]);
     const [disabled, setDisabled] = useState(false);
+    const [timer, setTimer] = useState(1); 
 
 
 
@@ -65,8 +67,8 @@ function Questions(props) {
                 "status": "Skipped",
                 "solution": question["solution"]
             }
-        ])
-        setAnswerList(newAnswersList);
+        ]);
+        setAnswerList(() => newAnswersList);
         nextQuestion();
         buttonDisabled();
     }
@@ -89,11 +91,58 @@ function Questions(props) {
         setDisabled(true);
     }
 
+    // const runTimer = () => { 
+    //     setTimer(timer => {
+    //         console.log(timer);
+    //         if (timer === maxTimer)
+    //         {
+    //             setIndexQuestions(indexQuestions => { 
+    //                 return indexQuestions + 1;
+    //             });
+    //             setQuestion(questions[indexQuestions + 1]);
+    //             console.log("Hola");
+    //             return 1;
+    //         }
+    //         else
+    //         {
+    //             console.log("Adios");
+    //             return timer + 1;
+    //         }
+    //     });
+    // };
+
+    // useEffect(() => {
+    //     const interval = setInterval(runTimer, 1000);
+    //      clearInterval(() => interval);
+    // }, []);
+
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            
+            setTimer(() => {
+                const newTimer = timer + 1;
+                console.log('old' + newTimer);
+                console.log('new+' + (timer % maxTimer));
+                
+                if (newTimer % maxTimer === maxTimer - 1)
+                {
+                    skipQuestion();
+                }
+                return newTimer % maxTimer;
+            });
+        }, 1000);
+        // clearInterval(interval);
+    },[]);
+
+
+
+
     return (
         <>    
             <div id="progressBar">
                 <h2>Question {indexQuestions + 1} of {questions.length}</h2>
-                <ProgressBar color={"#ff7979"} width={"150px"} value={indexQuestions + 1} max={questions.length} />
+                <ProgressBar color={"#ff7979"} width={"150px"} timer={timer - 1} max={maxTimer} />
             </div>
             <div id="Question">
                 {!props.gameOver && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
