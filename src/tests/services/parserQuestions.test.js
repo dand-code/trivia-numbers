@@ -16,7 +16,6 @@ describe("Parsing response API", () => {
             expect(`${numbers[i]} ` + questions[i]["question"].toLowerCase()).toEqual(apiResponse[numbers[i]].toLowerCase());
             expect(questions[i]["solution"]).toEqual(numbers[i]);
             expect(questions[i]["options"].length).toEqual(4);
-            expect(questions[i]["answer"]).toEqual(null);
         }
     });
 });

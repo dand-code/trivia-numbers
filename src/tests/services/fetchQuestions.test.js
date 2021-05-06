@@ -1,4 +1,4 @@
-import { fetchQuestions } from "../../services/fetchQuestions";
+import { fetchQuestions, restoreQuestions, updateStoredQuestions } from "../../services/fetchQuestions";
 
 beforeEach(() => {
     fetch.resetMocks();
@@ -19,7 +19,19 @@ describe("Fetching questions from NumbersAPI", () => {
             expect(`${numbers[i]} ` + questions[i]["question"].toLowerCase()).toEqual(apiResponse[numbers[i]].toLowerCase());
             expect(questions[i]["solution"]).toEqual(numbers[i]);
             expect(questions[i]["options"].length).toEqual(4);
-            expect(questions[i]["answer"]).toEqual(null);
         }
+    });
+
+    test("restore questions list from local storage", async () => {
+        updateStoredQuestions([
+            { "question": "Is the number of players in a field hockey team.", "solution": "11", "options": [83, 21, 58, "11"]}
+        ], 0, [{ "question": "Is the number of players in a field hockey team.", "status": "Skipped", "solution": "11" }]);
+        
+        const questions = restoreQuestions();
+
+        expect(questions.questions[0]['question'].toLowerCase()).toEqual("Is the number of players in a field hockey team.".toLowerCase());
+        expect(questions.questions[0]["solution"]).toEqual('11');
+        expect(questions.questions[0]["options"].length).toEqual(4);
+        expect(questions.answersList[0]["status"]).toEqual('Skipped');
     });
 });

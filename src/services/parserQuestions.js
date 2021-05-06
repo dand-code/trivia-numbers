@@ -1,10 +1,10 @@
 
 /*
 const questions = [
-    { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"], "answers": null },
-    { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2", "answers": ["2", "4", "0", "5"], "answers": null },
-    { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "options": "3", "answers": ["2", "4", "3", "5"], "answers": null  },
-    { "question": "Is the highest score possible in Olympics gymnastics competitions.", "options": "10", "answers": ["9", "14", "20", "10"], "answers": null  }
+    { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"] },
+    { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2", "answers": ["2", "4", "0", "5"] },
+    { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "options": "3", "answers": ["2", "4", "3", "5"] },
+    { "question": "Is the highest score possible in Olympics gymnastics competitions.", "options": "10", "answers": ["9", "14", "20", "10"] }
 ]
   */
 const parseQuestionsResponse = (questionsResponse) => {
@@ -22,8 +22,7 @@ const generateQuestion = (number, fact) => {
     return {
         "question": formatFact(number, fact),
         "solution": number,
-        "options": generateOptions(number),
-        "answer": null
+        "options": generateOptions(number)
     };
 }
 
