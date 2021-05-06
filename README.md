@@ -18,7 +18,15 @@ After finishing the game, a summary page with the results obtained and an option
 * Jest y Enzyme
 * Styled-Components
 
+### Running the game
 
+After cloning the repository in your local machine, you should do the following steps to run the app in your machine:
+
+> npm install
+> npm start
+
+If you want to run the suite of test:
+> jest --watchAll
 
 ### Project Goals 
 
@@ -33,7 +41,7 @@ After finishing the game, a summary page with the results obtained and an option
 ##### Extra Goals
 - [ ] Add a progress bar for the remaining time of each question that, as it progresses, changes color.
 - [x] Implement a responsive design.
-- [ ] Persist the state of the game, so that when reloading the page everything continues where it left off.
+- [x] Persist the state of the game, so that when reloading the page everything continues where it left off.
 - [ ] Use Redux to manage the state of the application.
 - [x] The use of hooks will be valued
 - [x] The use of styled-components will be valued
@@ -175,4 +183,7 @@ Once you have all the data ready, `fetchQuestions.js` takes care of passing this
 > I have been able to do the progress bar component. It worked well for the first and second questions but did not skip to the others questions.
 
 >* **Testing components with hooks and styled-component**
-> XXX
+> I have troubles to mount properly the components with the right context using the theme configuration and hooks. 
+
+>* **Issue storing state in local storage related with async**
+> For any reason, I can´t start storing the status of the answers in a sync way. It is storing the status without the last answer. For example, if the current status is the user answered until the questions 8, the local storage has stored the status until the question 7.
