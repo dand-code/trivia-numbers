@@ -21,4 +21,8 @@ const updateStoredQuestions = (questions, index, answersList) => {
     setLocal({ 'questions': questions, 'index': index, 'answersList': answersList });
 }
 
-export { fetchQuestions, restoreQuestions, updateStoredQuestions };
+const clearQuestions = () => {
+    localStorage.removeItem("questions");
+};
+
+export { fetchQuestions, restoreQuestions, updateStoredQuestions, clearQuestions };

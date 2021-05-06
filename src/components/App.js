@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchQuestions, restoreQuestions, updateStoredQuestions } from '../services/fetchQuestions';
+import { fetchQuestions, restoreQuestions, updateStoredQuestions, clearQuestions } from '../services/fetchQuestions';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
 
@@ -51,6 +51,7 @@ function App() {
   
   const resetGame = () => { 
     setGameOver(false);
+    clearQuestions();
     window.location = "/"; 
   }
 
