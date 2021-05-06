@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchQuestions } from '../services/fetchQuestions';
+import { fetchQuestions, restoreQuestions, updateStoredQuestions } from '../services/fetchQuestions';
 import Welcome from './_Welcome';
 import Questions from './_Questions';
 
@@ -37,21 +37,26 @@ const Title = styled.h1`
 `;
 
 function App() {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState(restoreQuestions());
   const [answersList, setAnswerList] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-  
- 
-  fetchQuestions()
-    .then(data => {
-      setQuestions(data);
-    });
+
+  if (!questions)
+  {
+    fetchQuestions()
+      .then(questions => {
+        setQuestions(questions);
+      });
+  }
   
   const resetGame = () => { 
     setGameOver(false);
     window.location = "/"; 
   }
 
+  const updateQuestions = (questions, index, answersList) => { 
+    updateStoredQuestions(questions, index, answersList);
+  };
   return (
     <>
       <GlobalStyle />
@@ -60,10 +65,11 @@ function App() {
           Trividado
         </Title>
         <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route path="/trivial" render={props => <Questions {...props} questions={questions} answersList={answersList} setAnswerList={setAnswerList} resetGame={resetGame}
-            setGameOver={setGameOver} gameOver={gameOver}/>} />
-          </Switch>
+            <Route exact path="/" render={props => <Welcome {...props} />} />
+            <Route path="/trivial" render={props => <Questions {...props} questions={questions} answersList={answersList} setAnswerList={setAnswerList} resetGame={resetGame}
+              setGameOver={setGameOver} gameOver={gameOver} updateQuestions={updateQuestions} />
+            } />
+        </Switch> 
       </MainWrapper>
     
     </>

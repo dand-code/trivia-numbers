@@ -24,13 +24,12 @@ const Button = styled.button`
 `;
  
 function Questions(props) {
-    const questions = props.questions;
-    const [indexQuestions, setIndexQuestions] = useState(0);
+    const questions = props.questions.questions;
+    const [indexQuestions, setIndexQuestions] = useState(props.questions.index);
     const [question, setQuestion] = useState(questions[0]);
     const [userAnswer, setUserAnswer] = useState();
-    const [answersList, setAnswerList] = useState([]);
+    const [answersList, setAnswerList] = useState(props.questions.answersList);
     const [disabled, setDisabled] = useState(false);
-
 
     const saveUserAnswer = (e) => { 
         const selectedItem = e.currentTarget;
@@ -51,6 +50,7 @@ function Questions(props) {
                 "solution": question["solution"]
             }
         ])
+        props.updateQuestions(questions, newAnswersList.length - 1, answersList);
         setAnswerList(newAnswersList);
         nextQuestion();
         buttonDisabled();
@@ -63,7 +63,8 @@ function Questions(props) {
                 "status": "Skipped",
                 "solution": question["solution"]
             }
-        ])
+        ]);
+        props.updateQuestions(questions, newAnswersList.length - 1, answersList);
         setAnswerList(newAnswersList);
         nextQuestion();
         buttonDisabled();
@@ -86,13 +87,12 @@ function Questions(props) {
         if (indexQuestions === questions.length - 1)
         setDisabled(true);
     }
-
     return (
         <>    
             <h2>Question {indexQuestions + 1} of {questions.length}</h2> 
             
             <div>
-                {!props.gameOver && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
+                {!props.gameOver && question && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
             </div>
             <div>
                 {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>}
