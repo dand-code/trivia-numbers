@@ -43,8 +43,8 @@ function Question(props) {
         <>
             <QuestionText>{props.question["question"]}</QuestionText>
             <AnswersWrapper>
-                {props.question["options"].map(option => 
-                  <AnswerItem onClick={props.saveUserAnswer}>
+                {props.question["options"].map((option, index) => 
+                    <AnswerItem key={index} onClick={props.saveUserAnswer}>
                     <CircleSelect className={parseInt(props.userAnswer) === option ? 'selected' : ""}></CircleSelect>{option}
                   </AnswerItem>  
                 )}
