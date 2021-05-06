@@ -42,18 +42,11 @@ function Question(props) {
         <>
             <QuestionText>{props.question["question"]}</QuestionText>
             <AnswersWrapper>
-                <AnswerItem onClick={props.saveUserAnswer}>
-                    <CircleSelect className={props.userAnswer == props.question["options"][0] ? 'selected' : ""}></CircleSelect>{props.question["options"][0]}
-                </AnswerItem>
-                <AnswerItem onClick={props.saveUserAnswer}>
-                    <CircleSelect className={props.userAnswer == props.question["options"][1] ? 'selected' : ""}></CircleSelect>{props.question["options"][1]}
-                </AnswerItem>
-                <AnswerItem onClick={props.saveUserAnswer}>
-                    <CircleSelect className={props.userAnswer == props.question["options"][2] ? 'selected' : ""}></CircleSelect>{props.question["options"][2]}
-                </AnswerItem>
-                <AnswerItem onClick={props.saveUserAnswer}>
-                    <CircleSelect className={props.userAnswer == props.question["options"][3] ? 'selected' : ""}></CircleSelect>{props.question["options"][3]}
-                    </AnswerItem>
+                {props.question["options"].map(option => 
+                  <AnswerItem onClick={props.saveUserAnswer}>
+                    <CircleSelect className={parseInt(props.userAnswer) === option ? 'selected' : ""}></CircleSelect>{option}
+                  </AnswerItem>  
+                )}
             </AnswersWrapper>
         </>
     );
