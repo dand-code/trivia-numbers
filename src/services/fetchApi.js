@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://numbersapi.com/';
+const ENDPOINT = '//numbersapi.com/';
 
 const qtyQuestions = 10;
 
