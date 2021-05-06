@@ -49,8 +49,8 @@ function AnswerRecords(props) {
     return (
         <div>
             <ul>
-                {answersList.map(answer =>
-                    <UserAnswerListItem key={answer.solution}>
+                {answersList.map((answer,index) =>
+                    <UserAnswerListItem key={answer.solution + index}>
                         <Line></Line>
                         <p>{answer.question}</p>
                         <div className={answer.status === 'Correct' ? 'answer ok' : "answer error"}>
