@@ -7,7 +7,8 @@
 ## How it works?
 
 The questions are generated through the API http://numbersapi.com/.
-For each question, 4 answer options will be given and the player will have two options to answer, between contesting/confirming the jump to the next question.
+
+For each question, 4 answer options will be given and the player will have two options to answer, between _Confirm_ and _Skip_ to the next question.
 
 Each answer will be kept in history. The user will be able to see the questions with the status of the answer.
 After finishing the game, a summary page with the results obtained and an option is presented to return to the game.
@@ -34,11 +35,11 @@ If you want to run the suite of test:
 - [x] Correctly structure the state of the application and its transitions.
 - [x] Differentiate responsibilities for each component.
 - [x] Control the different error cases that may arise (errors in the API, etc.)
-- [x]  **Testing:** All layers should have at least one test (unit, integration). 100% coverage is not required.
+- [ ]  **Testing:** All layers should have at least one test (unit, integration). 100% coverage is not required.
 
 
 
-##### Extra Goals
+##### Extra Goals 
 - [ ] Add a progress bar for the remaining time of each question that, as it progresses, changes color.
 - [x] Implement a responsive design.
 - [x] Persist the state of the game, so that when reloading the page everything continues where it left off.
@@ -61,34 +62,36 @@ Analyze the API. | Send a generic question to render on the “Questions” comp
 
 * `App.js`:
     1. Global reset styles are applied with “createGlobalStyle”, from Styled-Component.
-    1. Switch between Welcome page and the game.
+    1. Switch between Welcome page and the game page.
 
 * `Welcome.js`:
-    1. Global reset styles are applied with “createGlobalStyle”, from Styled-Component.
     1. Button with link to game start.
+    1. Include a home page subtitle, that will omit with the button when the user click on Start.
 
 * `Questions.js`:
     1. Receives API data formatted for questions;
     1. Stores in the state the answer selected by the user in the child component.
     1. Keeps in the state the list of questions answered to generate the history.
     1. Disables the 'confirm' and 'skip' buttons when the limit of questions is reached.
+
 * `Question.js`:
     1. Receives questions information sent by props from Question component.  
     1. Render the question and the answers options.
-    1. Send user answer selected to Questions component by lifting. 
+    1. Send user answer selected to Questions component by lifting.
+
 * `AnswerRecords.js`:
     1. Receives answers list by props from Questions component. 
-   1. Render the answer, the status (correct, error, or skipped).
+    1. Render the answer, the status (correct, error, or skipped).
     1. Render the solution (in error or skipped situation).
 
 #### Infrastructure (services)
 To get the data from the API, three components are organized to:
 
-1. Make the call and get the response promise (src / services / fetchApi.js);
-1. Format the received data (src / services / parserQuestions.js);
-1. Intermediate between the call to the Api and that sends the response formatted src / services / fetchQuestions.js to the App component).
+1. Make the call and get the response promise (src/services/fetchApi.js);
+1. Format the received data (src/services/parserQuestions.js);
+1. Intermediate between the call to the API and that sends the response formatted src/services/fetchQuestions.js to the App component).
 
-In the game Trivided the player must answer questions about 10 random numbers. In order not to make a call to the server for each question round, in this project it was chosen to make a single call to the API when loading the page, which directly brings the data of 10 numbers chosen to the azer. And for that it was necessary to program the construction of the URL with 10 ramdon numbers. The advantages are:
+In the game Trividado the player must answer questions about 10 random numbers. Instead to rerun a call to the server for each question round, in this project it was chosen to make a single call to the API when loading the page, which directly brings the data of 10 numbers chosen to the azer. And for that it was necessary to program the construction of the URL with 10 aleatory numbers. The advantages are:
 
 * Reduce the amount of data consumed by the user's device;
 * Decrease the time to load the application;
@@ -125,14 +128,14 @@ In addition, there is another challenge with the API. The data received from the
 }
 ```
 
-In order for it to be used in the application, it is necessary to parser this standard:
+For the API data to have been used, it is necessary to format to this standard:
 
 ```
 const questions = [
-   { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"], "answer": null },
-   { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2", "options": ["2", "4", "0", "5"], "answer": null },
-   { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "answer": "3", "options": ["2", "4", "3", "5"], "answer": null },
-   { "question": "Is the highest score possible in Olympics gymnastics competitions.", "answer": "10", "options": ["9", "14", "20", "10"], "answer": null }
+   { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"] },
+   { "question": "Is the number of polynucleotide strands in a DNA double helix.", "answer": "2", "options": ["2", "4", "0", "5"] },
+   { "question": "Is the number of sets needed to be won to win the whole match in volleyball.", "answer": "3", "options": ["2", "4", "3", "5"] },
+   { "question": "Is the highest score possible in Olympics gymnastics competitions.", "answer": "10", "options": ["9", "14", "20", "10"] }
  ]
 ```
 
@@ -147,7 +150,7 @@ const formatFact = (number, fact) => {
 }
 ```
 
-2. Save the solution on an attribute; Define the options for the answers, including the solution; In addition to shuffling the options:
+2. Save the solution on a variable and define the other answers options, shuffling: 
 
 `parserQuestions.js:`
 ````javascript
@@ -162,7 +165,7 @@ const generateOptions = (solution) => {
 }
 ````
 
-3. Generate a question structure, which also includes an attribute for the user's response.
+3. Generate the question final structure:
 
 `parserQuestions.js:`
 ````javascript
@@ -170,8 +173,7 @@ const generateQuestion = (number, fact) => {
    return {
        "question": formatFact(number, fact),
        "solution": number,
-       "options": generateOptions(number),
-       "answer": null
+       "options": generateOptions(number)
    };
 }
 ````
