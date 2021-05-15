@@ -30,7 +30,6 @@ function Welcome() {
             <Link to="/trivial">
                 <Button
                     target="_blank"
-                    rel="noopener noreferrer"
                 >
                     Start
               </Button>

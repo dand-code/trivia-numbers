@@ -90,18 +90,15 @@ function Questions(props) {
     return (
         <>    
             <h2>Question {indexQuestions + 1} of {questions.length}</h2> 
-            
             <div>
                 {!props.gameOver && question && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
             </div>
             <div>
                 {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>}
                 {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled} primary>Skip</Button>}
-            </div>
-               
+            </div>   
             <AnswerRecords answersList={answersList} />
             { props.gameOver && <Button onClick={props.resetGame} primary>Play Again</Button> }
-            
         </>
     );
 }

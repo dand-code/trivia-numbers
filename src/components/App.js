@@ -5,6 +5,7 @@ import { fetchQuestions, restoreQuestions, updateStoredQuestions, clearQuestions
 import Welcome from './_Welcome';
 import Questions from './_Questions';
 
+
 const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
@@ -28,7 +29,7 @@ const MainWrapper = styled.main`
   color: ${ ({ theme }) => { return theme.colors.white } };
   line-height: ${ ({ theme }) => theme.spacing[2] }rem;
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto; 
 `;
 
 const Title = styled.h1`
@@ -60,7 +61,7 @@ function App() {
   };
   return (
     <>
-      <GlobalStyle />
+       <GlobalStyle />
       <MainWrapper>
         <Title>
           Trividado
@@ -72,7 +73,6 @@ function App() {
             } />
         </Switch> 
       </MainWrapper>
-    
     </>
   );
 }

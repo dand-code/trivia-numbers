@@ -17,7 +17,7 @@ const parseQuestionsResponse = (questionsResponse) => {
     return questions;
 }
 
-// return example: { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"], "answer": "" }
+// return example: { "question": "Is the number of dimensions of a line.", "solution": "1", "options": ["3", "1", "0", "4"] }
 const generateQuestion = (number, fact) => {
     return {
         "question": formatFact(number, fact),
