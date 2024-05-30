@@ -30,11 +30,11 @@ const CircleSelect = styled.div`
     display: inline-block;
     width: 1.3rem;
     height: 1.3rem;
-    background-color: ${({ theme }) => { return theme.colors.primary }};
+    background-color: ${({ theme }) => { return theme.colors.secondary }};
     margin: auto 12px 0;
     text-align: center;
     &.selected{
-        background-color:${({ theme }) => { return theme.colors.secondary }};
+        background-color:${({ theme }) => { return theme.colors.primary }};
 `;
 
 

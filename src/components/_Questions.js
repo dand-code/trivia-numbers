@@ -94,8 +94,8 @@ function Questions(props) {
                 {!props.gameOver && question && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
             </div>
             <div>
-                {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled}>Confirm</Button>}
-                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled} primary>Skip</Button>}
+                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled}>Skip</Button>}
+                {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled} primary>Confirm</Button>} 
             </div>   
             <AnswerRecords answersList={answersList} />
             { props.gameOver && <Button onClick={props.resetGame} primary>Play Again</Button> }
