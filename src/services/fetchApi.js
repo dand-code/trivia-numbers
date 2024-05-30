@@ -11,7 +11,7 @@ const fetchApi = async () => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return await response.text(); // numbersapi.com devuelve texto.
+    return await response.text();
   } catch (error) {
     console.error('Failed to fetch:', error);
     throw error;
