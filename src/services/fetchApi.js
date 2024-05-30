@@ -1,21 +1,12 @@
-const PROXY_URL = '/.netlify/functions/proxy?url=';
 const ENDPOINT = 'http://numbersapi.com/';
 
 const qtyQuestions = 10;
 
-const fetchApi = async () => {
+const fetchApi = () => {
   const randomNumbers = generateRandomNumbers(qtyQuestions).join();
 
-  try {
-    const response = await fetch(PROXY_URL + encodeURIComponent(ENDPOINT + randomNumbers));
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.text();
-  } catch (error) {
-    console.error('Failed to fetch:', error);
-    throw error;
-  }
+  return fetch(ENDPOINT + randomNumbers)
+    .then(response => response.json());
 }
 
 const generateRandomNumbers = (qty) => {

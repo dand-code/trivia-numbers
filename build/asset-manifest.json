@@ -1,10 +1,17 @@
 {
   "files": {
-    "main.js": "./static/js/main.fefe8e48.js",
-    "index.html": "./index.html",
-    "main.fefe8e48.js.map": "./static/js/main.fefe8e48.js.map"
+    "main.js": "/trivia-numbers/static/js/main.dca07231.chunk.js",
+    "main.js.map": "/trivia-numbers/static/js/main.dca07231.chunk.js.map",
+    "runtime-main.js": "/trivia-numbers/static/js/runtime-main.060d975f.js",
+    "runtime-main.js.map": "/trivia-numbers/static/js/runtime-main.060d975f.js.map",
+    "static/js/2.d1d430dc.chunk.js": "/trivia-numbers/static/js/2.d1d430dc.chunk.js",
+    "static/js/2.d1d430dc.chunk.js.map": "/trivia-numbers/static/js/2.d1d430dc.chunk.js.map",
+    "index.html": "/trivia-numbers/index.html",
+    "static/js/2.d1d430dc.chunk.js.LICENSE.txt": "/trivia-numbers/static/js/2.d1d430dc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/main.fefe8e48.js"
+    "static/js/runtime-main.060d975f.js",
+    "static/js/2.d1d430dc.chunk.js",
+    "static/js/main.dca07231.chunk.js"
   ]
 }
