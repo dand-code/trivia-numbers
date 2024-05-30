@@ -2,7 +2,7 @@
 
 **Trividado Number** is a web application where the user must answer 10 questions related to random numbers.
 
-<img src="./DEMO - TRIVIDADO.gif" width='600px' />
+<img src="./DEMO.gif" width='590px' />
 
 ## How it works?
 
