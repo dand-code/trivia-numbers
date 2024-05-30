@@ -11,7 +11,7 @@ const Button = styled.button`
   padding: 15px 19px;
   text-decoration: none;
   font-weight: 800;
-  display: inline-block;q
+  display: inline-block;
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 40px;
