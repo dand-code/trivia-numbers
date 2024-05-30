@@ -1,106 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Question from './_Question';
 import AnswerRecords from './_AnswerRecords';
 
 const Button = styled.button`
-   background-color: ${props => props.primary ? ({ theme }) => { return theme.colors.primary } : ({ theme }) => { return theme.colors.secondary }};
-   width: 140px;
-   border: none;
-   color: ${({ theme }) => { return theme.colors.black }};
-   padding: 15px 19px;
-   text-decoration: none;
-   font-weight: 800;
-   display: inline-block;
-   font-size: 16px;
-   text-transform: uppercase;
-   margin-top: 40px;
-   margin-bottom: 40px;
-   margin-right: 20px;
+  background-color: ${props => props.primary ? ({ theme }) => theme.colors.primary : ({ theme }) => theme.colors.secondary};
+  width: 140px;
+  border: none;
+  color: ${({ theme }) => theme.colors.black};
+  padding: 15px 19px;
+  text-decoration: none;
+  font-weight: 800;
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-right: 20px;
 
-   &:last-of-type{
-      margin-right: 0;
-}
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
- 
+
 function Questions(props) {
-    const questions = props.questions.questions;
-    const [indexQuestions, setIndexQuestions] = useState(props.questions.index);
-    const [question, setQuestion] = useState(questions[0]);
-    const [userAnswer, setUserAnswer] = useState();
-    const [answersList, setAnswerList] = useState(props.questions.answersList);
-    const [disabled, setDisabled] = useState(false);
+  const [indexQuestions, setIndexQuestions] = useState(props.questions.index);
+  const [question, setQuestion] = useState(props.questions.questions[indexQuestions]);
+  const [userAnswer, setUserAnswer] = useState(null);
+  const [answersList, setAnswerList] = useState(props.questions.answersList);
 
-    const saveUserAnswer = (e) => { 
-        const selectedItem = e.currentTarget;
-        setUserAnswer(selectedItem.innerText);
+  useEffect(() => {
+    setQuestion(props.questions.questions[indexQuestions]);
+    setUserAnswer(null);
+  }, [indexQuestions, props.questions.questions]);
+
+  const saveUserAnswer = (answer) => {
+    setUserAnswer(answer);
+  }
+
+  const confirmQuestion = () => {
+    if (userAnswer === null) {
+      alert("Please select an answer or choose to skip the question.");
+      return;
     }
 
-    const confirmQuestion = () => {
-        let status = 'Correct';
-        if (userAnswer !== question["solution"])
-        {
-            status = 'Error';
-        } 
+    const normalizedUserAnswer = String(userAnswer).trim().toLowerCase();
+    const normalizedSolution = String(question["solution"]).trim().toLowerCase();
 
-        const newAnswersList = answersList.concat([
-            {
-                "question": question["question"],
-                "status": status,
-                "solution": question["solution"]
-            }
-        ])
-        props.updateQuestions(questions, newAnswersList.length - 1, answersList);
-        setAnswerList(newAnswersList);
-        nextQuestion();
-        buttonDisabled();
+    let status = 'Correct';
+    if (normalizedUserAnswer !== normalizedSolution) {
+      status = 'Error';
     }
 
-    const skipQuestion = () => {
-        const newAnswersList = answersList.concat([
-            {
-                "question": question["question"],
-                "status": "Skipped",
-                "solution": question["solution"]
-            }
-        ]);
-        props.updateQuestions(questions, newAnswersList.length - 1, answersList);
-        setAnswerList(newAnswersList);
-        nextQuestion();
-        buttonDisabled();
-    }
+    const newAnswersList = [...answersList, {
+      "question": question["question"],
+      "selectedAnswer": userAnswer,
+      "status": status,
+      "solution": question["solution"]
+    }];
+    props.updateQuestions(props.questions.questions, newAnswersList.length - 1, newAnswersList);
+    setAnswerList(newAnswersList);
+    nextQuestion();
+  }
 
-    const nextQuestion = () => { 
-        if (indexQuestions < questions.length - 1)
-        {
-            let nextIndexQuestion = indexQuestions + 1;
-            setIndexQuestions(nextIndexQuestion);
-            setQuestion(questions[nextIndexQuestion]);
-        } else
-        { 
-            props.setGameOver(true);
-        }
-        
-    }
+  const skipQuestion = () => {
+    const newAnswersList = [...answersList, {
+      "question": question["question"],
+      "status": "Skipped",
+      "solution": question["solution"]
+    }];
+    props.updateQuestions(props.questions.questions, newAnswersList.length - 1, newAnswersList);
+    setAnswerList(newAnswersList);
+    nextQuestion();
+  }
 
-    const buttonDisabled = () => {
-        if (indexQuestions === questions.length - 1)
-        setDisabled(true);
+  const nextQuestion = () => {
+    if (indexQuestions < props.questions.questions.length - 1) {
+      setIndexQuestions(indexQuestions + 1);
+    } else {
+      props.setGameOver(true);
     }
-    return (
-        <>    
-            <h2>Question {indexQuestions + 1} of {questions.length}</h2> 
-            <div>
-                {!props.gameOver && question && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
-            </div>
-            <div>
-                {!props.gameOver && <Button onClick={skipQuestion} disabled={disabled}>Skip</Button>}
-                {!props.gameOver && <Button onClick={confirmQuestion} disabled={disabled} primary>Confirm</Button>} 
-            </div>   
-            <AnswerRecords answersList={answersList} />
-            { props.gameOver && <Button onClick={props.resetGame} primary>Play Again</Button> }
-        </>
-    );
+  }
+
+  return (
+    <>
+      <h2>Question {indexQuestions + 1} of {props.questions.questions.length}</h2>
+      <div>
+        {!props.gameOver && question && <Question question={question} saveUserAnswer={saveUserAnswer} userAnswer={userAnswer} />}
+      </div>
+      <div>
+        {!props.gameOver && <Button onClick={skipQuestion}>Skip</Button>}
+        {!props.gameOver && <Button onClick={confirmQuestion} primary disabled={userAnswer === null}>Confirm</Button>}
+      </div>
+      <AnswerRecords answersList={answersList} />
+      {props.gameOver && <Button onClick={props.resetGame} primary>Play Again</Button>}
+    </>
+  );
 }
 
 export default Questions;

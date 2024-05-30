@@ -49,7 +49,7 @@ function AnswerRecords(props) {
     return (
         <div>
             <ul>
-                {answersList.map((answer,index) =>
+                {answersList.slice().reverse().map((answer,index) =>
                     <UserAnswerListItem key={answer.solution + index}>
                         <Line></Line>
                         <p>{answer.question}</p>
