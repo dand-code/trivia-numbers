@@ -1,9 +1,9 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { fetchQuestions, restoreQuestions, updateStoredQuestions, clearQuestions } from '../services/fetchQuestions';
-import Welcome from './_Welcome';
-import Questions from './_Questions';
+import Welcome from './_Welcome.js';
+import Questions from './_Questions.js';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -61,17 +61,28 @@ function App() {
   };
   return (
     <>
-       <GlobalStyle />
+      <GlobalStyle />
       <MainWrapper>
         <Title>
           Trividado
         </Title>
-        <Switch>
-            <Route exact path="/" render={props => <Welcome {...props} />} />
-            <Route path="/trivial" render={props => <Questions {...props} questions={questions} answersList={answersList} setAnswerList={setAnswerList} resetGame={resetGame}
-              setGameOver={setGameOver} gameOver={gameOver} updateQuestions={updateQuestions} />
-            } />
-        </Switch> 
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route 
+            path="/trivial" 
+            element={
+              <Questions 
+                questions={questions} 
+                answersList={answersList} 
+                setAnswerList={setAnswerList} 
+                resetGame={resetGame}
+                setGameOver={setGameOver} 
+                gameOver={gameOver} 
+                updateQuestions={updateQuestions} 
+              />
+            } 
+          />
+        </Routes> 
       </MainWrapper>
     </>
   );
