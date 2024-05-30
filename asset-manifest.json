@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/trivia-numbers/static/js/main.2ab81e91.js",
+    "main.js": "/trivia-numbers/static/js/main.c52680fd.js",
     "index.html": "/trivia-numbers/index.html",
-    "main.2ab81e91.js.map": "/trivia-numbers/static/js/main.2ab81e91.js.map"
+    "main.c52680fd.js.map": "/trivia-numbers/static/js/main.c52680fd.js.map"
   },
   "entrypoints": [
-    "static/js/main.2ab81e91.js"
+    "static/js/main.c52680fd.js"
   ]
 }
